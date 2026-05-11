@@ -52,7 +52,6 @@ export class UsersComponent {
   searchTerm: string = '';
 
   totalUsers: number = 0;
-  totalRegistered: number = 0;
   activeUsers: number = 0;
   inactiveUsers: number = 0;
 
@@ -68,7 +67,7 @@ export class UsersComponent {
 
   users: User[] = [];
 
-  displayedColumns: string[] = ['name', 'dni', 'email', 'office', 'status', 'actions'];
+  displayedColumns: string[] = ['name', 'email', 'office', 'status', 'actions'];
 
   newUser: User = {
     id: '0',
@@ -77,12 +76,15 @@ export class UsersComponent {
     dni: '',
     email: '',
     phone: null,
-    officeId: '1',
+    officeId: '',
     officeName: '',
     gender: null,
     birthDate: null,
     status: true
   };
+
+  password = '';
+  confirmPassword = '';
 
   ngOnInit(): void {
     this.loadUsers();
@@ -96,7 +98,6 @@ export class UsersComponent {
           officeName: u.office?.name ?? '',
         }));
         this.totalUsers = this.users.length;
-        this.totalRegistered = this.users.length;
         this.activeUsers = this.users.filter((u) => u.status).length;
         this.inactiveUsers = this.users.filter((u) => !u.status).length;
       },
@@ -118,6 +119,8 @@ export class UsersComponent {
 
   openCreateForm(): void {
     this.showCreateForm = true;
+    this.password = '';
+    this.confirmPassword = '';
     this.newUser = {
       id: '0',
       firstName: '',
@@ -125,7 +128,7 @@ export class UsersComponent {
       dni: '',
       email: '',
       phone: null,
-      officeId: '1',
+      officeId: '',
       officeName: '',
       gender: null,
       birthDate: null,
@@ -138,29 +141,52 @@ export class UsersComponent {
   }
 
   createUser(): void {
-    if (this.newUser.firstName && this.newUser.lastName && this.newUser.dni && this.newUser.email) {
-      const payload = {
-        firstName: this.newUser.firstName,
-        lastName: this.newUser.lastName,
-        dni: this.newUser.dni,
-        email: this.newUser.email,
-        phone: this.newUser.phone,
-        officeId: this.newUser.officeId,
-        gender: this.newUser.gender,
-        birthDate: this.newUser.birthDate,
-        status: this.newUser.status,
-      };
-      this.usersService.create(payload).subscribe({
-        next: () => {
-          this.showCreateForm = false;
-          this.loadUsers();
-          alert('Usuario creado exitosamente');
-        },
-        error: () => alert('No se pudo crear usuario'),
-      });
-    } else {
-      alert('Complete los campos requeridos');
+    if (!this.newUser.firstName || !this.newUser.lastName || !this.newUser.dni || !this.newUser.email || !this.newUser.officeId) {
+      alert('Complete los campos requeridos (Nombres, Apellidos, DNI, Email, Oficina)');
+      return;
     }
+
+    if (!/^\d{8}$/.test(this.newUser.dni)) {
+      alert('El DNI debe tener exactamente 8 números');
+      return;
+    }
+
+    if (!this.newUser.email.includes('@')) {
+      alert('El correo electrónico debe ser válido (contener @)');
+      return;
+    }
+
+    if (!this.password) {
+      alert('Debe ingresar una contraseña');
+      return;
+    }
+
+    if (this.password !== this.confirmPassword) {
+      alert('Las contraseñas no coinciden');
+      return;
+    }
+
+    const payload = {
+      firstName: this.newUser.firstName,
+      lastName: this.newUser.lastName,
+      dni: this.newUser.dni,
+      email: this.newUser.email,
+      phone: this.newUser.phone,
+      officeId: this.newUser.officeId,
+      gender: this.newUser.gender,
+      birthDate: this.newUser.birthDate,
+      status: this.newUser.status,
+      password: this.password,
+    };
+    
+    this.usersService.create(payload).subscribe({
+      next: () => {
+        this.showCreateForm = false;
+        this.loadUsers();
+        alert('Usuario creado exitosamente');
+      },
+      error: () => alert('No se pudo crear usuario'),
+    });
   }
 
   editUser(user: User): void {

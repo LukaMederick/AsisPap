@@ -93,7 +93,13 @@ export class OfficesComponent {
     });
   }
 
-  displayedColumns: string[] = ['name', 'code', 'status', 'actions'];
+  displayedColumns: string[] = ['name', 'code', 'parent', 'status', 'actions'];
+
+  getParentName(parentId: string | null): string {
+    if (!parentId || parentId === '0') return 'Ninguna';
+    const parent = this.offices.find(o => o.id === parentId);
+    return parent ? parent.name : 'Ninguna';
+  }
 
   get filteredOffices(): Office[] {
     if (!this.searchTerm) return this.offices;

@@ -78,6 +78,11 @@
           <td mat-cell *matCellDef="let o"> {{ o.code }} </td>
         </ng-container>
 
+        <ng-container matColumnDef="parent">
+          <th mat-header-cell *matHeaderCellDef> Oficina Padre </th>
+          <td mat-cell *matCellDef="let o"> {{ getParentName(o.parentId) }} </td>
+        </ng-container>
+
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef> Estado </th>
           <td mat-cell *matCellDef="let o">

@@ -17,12 +17,6 @@
     </mat-card>
     <mat-card class="stat-card">
       <mat-card-content>
-        <div class="stat-value">{{ totalRegistered }}</div>
-        <div class="stat-label">Total de usuarios registrados</div>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="stat-card">
-      <mat-card-content>
         <div class="stat-value">{{ activeUsers }}</div>
         <div class="stat-label">Usuarios activos</div>
       </mat-card-content>
@@ -30,7 +24,7 @@
     <mat-card class="stat-card">
       <mat-card-content>
         <div class="stat-value">{{ inactiveUsers }}</div>
-        <div class="stat-label">Usuarios inactivos en el sistema</div>
+        <div class="stat-label">Usuarios inactivos</div>
       </mat-card-content>
     </mat-card>
   </div>
@@ -86,13 +80,13 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Contraseña</mat-label>
-            <input matInput type="password">
+            <mat-label>Contraseña *</mat-label>
+            <input matInput type="password" [(ngModel)]="password">
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Confirmar Contraseña</mat-label>
-            <input matInput type="password">
+            <mat-label>Confirmar Contraseña *</mat-label>
+            <input matInput type="password" [(ngModel)]="confirmPassword">
           </mat-form-field>
         </mat-tab>
 
@@ -139,11 +133,6 @@
             {{ u.firstName }} {{ u.lastName }}
             <div class="dni-text">{{ u.dni }}</div>
           </td>
-        </ng-container>
-
-        <ng-container matColumnDef="dni">
-          <th mat-header-cell *matHeaderCellDef> DNI </th>
-          <td mat-cell *matCellDef="let u"> {{ u.dni }} </td>
         </ng-container>
 
         <ng-container matColumnDef="email">
