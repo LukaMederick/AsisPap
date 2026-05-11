@@ -1,0 +1,64 @@
+<div class="logo">
+  <h2>Sistema de Gestión</h2>
+</div>
+
+<mat-nav-list>
+  <!-- ASISTENCIA -->
+  <div mat-subheader>Gestión de Asistencia</div>
+
+  <a mat-list-item routerLink="/attendance/general" routerLinkActive="active">
+    <mat-icon matListItemIcon>assignment</mat-icon>
+    <span matListItemTitle>Asistencia general</span>
+  </a>
+
+  <a mat-list-item routerLink="/attendance/register" routerLinkActive="active">
+    <mat-icon matListItemIcon>edit_calendar</mat-icon>
+    <span matListItemTitle>Registro de asistencia</span>
+  </a>
+
+  <a mat-list-item routerLink="/attendance/my-attendance" routerLinkActive="active">
+    <mat-icon matListItemIcon>person</mat-icon>
+    <span matListItemTitle>Mi asistencia</span>
+  </a>
+
+  <a mat-list-item routerLink="/attendance/schedules" routerLinkActive="active">
+    <mat-icon matListItemIcon>schedule</mat-icon>
+    <span matListItemTitle>Horarios</span>
+  </a>
+
+  <!-- PAPELETAS -->
+  <div mat-subheader>Gestión de Papeletas</div>
+
+  <a mat-list-item routerLink="/permissions/review" routerLinkActive="active">
+    <mat-icon matListItemIcon>rate_review</mat-icon>
+    <span matListItemTitle>Revisión de papeleta</span>
+  </a>
+
+  <a mat-list-item routerLink="/permissions/types" routerLinkActive="active">
+    <mat-icon matListItemIcon>category</mat-icon>
+    <span matListItemTitle>Tipos de papeletas</span>
+  </a>
+
+  <a mat-list-item routerLink="/permissions/all" routerLinkActive="active">
+    <mat-icon matListItemIcon>inbox</mat-icon>
+    <span matListItemTitle>Papeletas</span>
+  </a>
+
+  <!-- DIRECTORIO -->
+  <div mat-subheader>Directorio</div>
+
+  <a mat-list-item routerLink="/directory/offices" routerLinkActive="active">
+    <mat-icon matListItemIcon>business</mat-icon>
+    <span matListItemTitle>Oficinas</span>
+  </a>
+
+  <a mat-list-item routerLink="/directory/users" routerLinkActive="active">
+    <mat-icon matListItemIcon>people</mat-icon>
+    <span matListItemTitle>Usuarios</span>
+  </a>
+
+  <a mat-list-item routerLink="/directory/roles" routerLinkActive="active">
+    <mat-icon matListItemIcon>badge</mat-icon>
+    <span matListItemTitle>Roles</span>
+  </a>
+</mat-nav-list>

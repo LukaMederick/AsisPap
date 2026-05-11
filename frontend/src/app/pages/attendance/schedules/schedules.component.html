@@ -1,0 +1,92 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Horarios</h1>
+    <button mat-raised-button color="primary" (click)="openCreateForm()">
+      <mat-icon>add</mat-icon>
+      Crear Horario
+    </button>
+  </div>
+
+  <!-- Formulario Crear Horario -->
+  <mat-card class="form-card" *ngIf="showCreateForm">
+    <mat-card-header>
+      <mat-card-title>{{ isEditing ? 'Editar Horario' : 'Crear Horario' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="newSchedule.name">
+      </mat-form-field>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Hora de inicio</mat-label>
+          <input matInput type="time" [(ngModel)]="newSchedule.startTime">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Hora de fin</mat-label>
+          <input matInput type="time" [(ngModel)]="newSchedule.endTime">
+        </mat-form-field>
+      </div>
+
+      <div class="form-actions">
+        <button mat-button (click)="closeCreateForm()">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="createSchedule()">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Lista de horarios -->
+  <mat-card class="table-card">
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="full-width mb-20">
+        <mat-label>Buscar</mat-label>
+        <input matInput [(ngModel)]="searchTerm" placeholder="Buscar horario...">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <table mat-table [dataSource]="filteredSchedules" class="full-width">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let s"> {{ s.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="startTime">
+          <th mat-header-cell *matHeaderCellDef> Hora de inicio </th>
+          <td mat-cell *matCellDef="let s"> {{ s.startTime }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="endTime">
+          <th mat-header-cell *matHeaderCellDef> Hora de fin </th>
+          <td mat-cell *matCellDef="let s"> {{ s.endTime }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let s">
+            <span [class]="s.status ? 'status-active' : 'status-inactive'">
+              {{ s.status ? 'Activo' : 'Inactivo' }}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let s">
+            <button mat-icon-button color="primary" (click)="editSchedule(s)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteSchedule(s.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

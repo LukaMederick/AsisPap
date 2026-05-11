@@ -1,0 +1,73 @@
+.page-container {
+  padding: 24px;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.error-card {
+  margin-bottom: 24px;
+  border-radius: 16px;
+  background-color: #ffebee;
+}
+
+.error-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.error-content mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.error-content h3 {
+  margin: 0 0 8px 0;
+  color: #d32f2f;
+}
+
+.error-content p {
+  margin-bottom: 16px;
+  color: #666;
+}
+
+.register-card, .history-card {
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.radio-group {
+  margin: 20px 0;
+}
+
+.radio-label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.6);
+}
+
+.radio-group mat-radio-button {
+  margin-right: 24px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}

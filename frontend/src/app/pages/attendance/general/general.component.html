@@ -1,0 +1,69 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Asistencia general</h1>
+  </div>
+
+  <mat-card class="report-card">
+    <mat-card-header>
+      <mat-card-title>Reporte de Asistencia</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="filters-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Mes</mat-label>
+          <mat-select [(ngModel)]="selectedMonth">
+            <mat-option *ngFor="let month of months" [value]="month">
+              {{ month }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Año</mat-label>
+          <mat-select [(ngModel)]="selectedYear">
+            <mat-option *ngFor="let year of years" [value]="year">
+              {{ year }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Oficina</mat-label>
+          <mat-select [(ngModel)]="selectedOffice">
+            <mat-option *ngFor="let office of offices" [value]="office">
+              {{ office }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Horario</mat-label>
+          <mat-select [(ngModel)]="selectedSchedule">
+            <mat-option *ngFor="let schedule of schedules" [value]="schedule">
+              {{ schedule }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="options-row">
+        <mat-checkbox [(ngModel)]="showWorkdaysOnly">
+          Mostrar solo días laborables
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="showAllRecords">
+          Mostrar todos los registros de asistencia
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="showPermissionExits">
+          Mostrar papeletas de salida
+        </mat-checkbox>
+      </div>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" (click)="searchReports()">
+          <mat-icon>search</mat-icon>
+          Buscar registros
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

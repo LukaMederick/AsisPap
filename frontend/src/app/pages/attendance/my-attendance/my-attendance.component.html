@@ -1,0 +1,74 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1>Mi control de asistencia</h1>
+  </div>
+
+  <!-- Información del Horario -->
+  <mat-card class="schedule-card">
+    <mat-card-header>
+      <mat-card-title>Información del Horario</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="schedule-info">
+        <div class="info-item">
+          <span class="label">Entrada</span>
+          <span class="value">{{ entryTime }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Salida</span>
+          <span class="value">{{ exitTime }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Leyenda de colores -->
+  <mat-card class="legend-card">
+    <mat-card-header>
+      <mat-card-title>Línea de Colores</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="legend-items">
+        <div class="legend-item">
+          <div class="color-box on-time"></div>
+          <span>Entrada / Salida a tiempo</span>
+        </div>
+        <div class="legend-item">
+          <div class="color-box late"></div>
+          <span>Tardanza / Salida temprana</span>
+        </div>
+        <div class="legend-item">
+          <div class="color-box permission-exit"></div>
+          <span>Salida de Papelería</span>
+        </div>
+        <div class="legend-item">
+          <div class="color-box permission-return"></div>
+          <span>Retorno de Papelería</span>
+        </div>
+        <div class="legend-item">
+          <div class="color-box authorized"></div>
+          <span>Papelería Autorizada</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Calendario -->
+  <mat-card class="calendar-card">
+    <mat-card-header>
+      <mat-card-title>{{ currentMonth }} de {{ currentYear }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="calendar">
+        <div class="calendar-header">
+          <div *ngFor="let day of days" class="day-name">{{ day }}</div>
+        </div>
+        <div class="calendar-grid">
+          <div *ngFor="let day of calendarDays" class="calendar-day">
+            {{ day }}
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,27 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+// Estilos para el menú de temas
+mat-menu-item.active {
+  background-color: var(--primary-light);
+  color: var(--text-on-primary);
+
+  mat-icon {
+    color: var(--text-on-primary);
+  }
+}
+
+mat-menu-item mat-icon {
+  margin-right: 8px;
+  color: var(--text-secondary);
+}
+
+// Animación suave para el cambio de icono del tema
+mat-toolbar button mat-icon {
+  transition: transform 0.3s ease;
+}
+
+mat-toolbar button:hover mat-icon {
+  transform: scale(1.1);
+}

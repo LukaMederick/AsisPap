@@ -1,0 +1,53 @@
+.logo {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 16px;
+  background-color: var(--sidebar-background);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+  }
+}
+
+.active {
+  background-color: var(--primary-light) !important;
+  color: var(--text-on-primary) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  .mat-icon {
+    color: var(--text-on-primary) !important;
+    transition: color 0.3s ease;
+  }
+}
+
+// Estilos adicionales para el sidebar
+:host {
+  background-color: var(--sidebar-background);
+  border-right: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+mat-nav-list {
+  background-color: transparent !important;
+}
+
+mat-list-item {
+  color: var(--text-primary) !important;
+  transition: color 0.3s ease;
+
+  &:hover {
+    background-color: var(--hover-color) !important;
+    transition: background-color 0.3s ease;
+  }
+}
+
+mat-subheader {
+  color: var(--text-secondary) !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
