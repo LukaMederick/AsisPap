@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeepPartial, Repository } from 'typeorm';
 import { Office } from '../database/entities/office.entity';
@@ -59,8 +59,65 @@ export class CoreDataService {
     return this.officeRepo.delete(id);
   }
 
+  /** Slugs de módulo que el frontend usa para menú y rutas (coinciden con permission.moduleName). */
+  private static readonly APP_MODULE_SLUGS = new Set([
+    'dashboard',
+    'attendance',
+    'permissions',
+    'directory',
+  ]);
+
   async findAllUsers() {
     return this.userRepo.find({ relations: ['office'], order: { createdAt: 'DESC' } });
+  }
+
+  /**
+   * Acceso por DNI: roles y módulos permitidos según permisos del rol (tabla role_permissions + permissions.moduleName).
+   * La contraseña no se valida aquí; conectar hash/API cuando exista auth real.
+   */
+  async getUserAccessByDni(dni: string) {
+    const normalized = dni.trim();
+    if (!normalized) {
+      throw new NotFoundException('DNI requerido');
+    }
+    const user = await this.userRepo.findOne({
+      where: { dni: normalized, status: true },
+      relations: [
+        'userRoles',
+        'userRoles.role',
+        'userRoles.role.rolePermissions',
+        'userRoles.role.rolePermissions.permission',
+      ],
+    });
+    if (!user) {
+      throw new NotFoundException('Usuario no encontrado o inactivo');
+    }
+    const modules = new Set<string>();
+    const roles: { id: string; name: string }[] = [];
+    for (const ur of user.userRoles ?? []) {
+      const role = ur.role;
+      if (!role?.status) continue;
+      roles.push({ id: String(role.id), name: role.name });
+      for (const rp of role.rolePermissions ?? []) {
+        const mod = rp.permission?.moduleName?.trim();
+        if (mod && CoreDataService.APP_MODULE_SLUGS.has(mod)) {
+          modules.add(mod);
+        }
+      }
+    }
+    const modulesList = [...modules];
+    if (modulesList.length === 0) {
+      throw new ForbiddenException('El usuario no tiene módulos asignados. Asigne permisos de módulo al rol.');
+    }
+    return {
+      userId: String(user.id),
+      dni: user.dni,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      fullName: `${user.firstName} ${user.lastName}`.trim(),
+      roles,
+      modules: modulesList,
+    };
   }
   async createUser(payload: DeepPartial<User>) {
     return this.userRepo.save(this.userRepo.create(payload));

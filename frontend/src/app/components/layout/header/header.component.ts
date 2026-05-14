@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { ThemeService, Theme } from '../../../core/services/theme.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -19,7 +20,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   appliedTheme: string = 'light';
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private themeService: ThemeService,
+    readonly auth: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.subscriptions.add(
@@ -41,6 +45,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   setTheme(theme: Theme): void {
     this.themeService.setTheme(theme);
+  }
+
+  logout(): void {
+    this.auth.logout();
   }
 
   getThemeIcon(): string {

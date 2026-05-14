@@ -1,0 +1,22 @@
+<div class="dashboard-page">
+  <header class="dashboard-page__header">
+    <div class="dashboard-page__titles">
+      <h1>Panel de Control</h1>
+      <p class="dashboard-page__subtitle">Resumen y estado general del sistema</p>
+    </div>
+  </header>
+
+  <section class="dashboard-page__summary" aria-label="Indicadores">
+    <app-dashboard-summary></app-dashboard-summary>
+  </section>
+
+  <div class="dashboard-page__grid">
+    <section class="dashboard-page__main" aria-label="Gráficos">
+      <app-dashboard-charts></app-dashboard-charts>
+    </section>
+    <aside class="dashboard-page__aside" aria-label="Cumpleaños y actividad">
+      <app-dashboard-birthdays></app-dashboard-birthdays>
+      <app-dashboard-notifications></app-dashboard-notifications>
+    </aside>
+  </div>
+</div>

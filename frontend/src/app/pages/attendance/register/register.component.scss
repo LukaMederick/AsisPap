@@ -37,7 +37,7 @@
 
 .error-content p {
   margin-bottom: 16px;
-  color: #666;
+  color: var(--text-secondary);
 }
 
 .register-card, .history-card {
@@ -58,7 +58,7 @@
   display: block;
   margin-bottom: 12px;
   font-weight: 500;
-  color: rgba(0,0,0,0.6);
+  color: var(--text-secondary);
 }
 
 .radio-group mat-radio-button {

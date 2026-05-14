@@ -1,0 +1,26 @@
+<mat-card class="widget-card notifications-widget">
+  <mat-card-header>
+    <div mat-card-avatar class="widget-icon info-icon">
+      <mat-icon>notifications_active</mat-icon>
+    </div>
+    <mat-card-title>Notificaciones Recientes</mat-card-title>
+    <mat-card-subtitle>Última actividad del sistema</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="scrollable-content">
+    <div class="timeline-list">
+      <div class="timeline-item" *ngFor="let notif of notifications">
+        <div class="timeline-icon" [ngClass]="notif.colorClass">
+          <mat-icon>{{ notif.icon }}</mat-icon>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <h4>{{ notif.title }}</h4>
+            <span class="time">{{ notif.time }}</span>
+          </div>
+          <p>{{ notif.description }}</p>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

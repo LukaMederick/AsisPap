@@ -1,0 +1,52 @@
+/* Mismo shell que antes en app-root: scroll solo en contenido principal */
+
+:host {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.global-header {
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.app-container {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+}
+
+:host ::ng-deep .app-container.mat-drawer-container {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+:host ::ng-deep .app-container .mat-drawer-content,
+:host ::ng-deep .app-container .mat-mdc-drawer-content {
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+:host ::ng-deep .app-container mat-drawer.sidebar {
+  overflow: hidden;
+}
+
+:host ::ng-deep .sidebar .mat-drawer-inner-container {
+  height: 100%;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+:host ::ng-deep .content main {
+  display: block;
+}

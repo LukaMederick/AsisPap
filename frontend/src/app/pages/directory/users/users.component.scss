@@ -32,12 +32,12 @@
 .stat-value {
   font-size: 28px;
   font-weight: 700;
-  color: #1976d2;
+  color: var(--accent-color);
 }
 
 .stat-label {
   font-size: 12px;
-  color: #666;
+  color: var(--text-secondary);
   margin-top: 8px;
 }
 
@@ -70,7 +70,7 @@
 
 .status-row label {
   font-weight: 500;
-  color: rgba(0,0,0,0.6);
+  color: var(--text-secondary);
 }
 
 .form-actions {
@@ -90,7 +90,7 @@
 
 .dni-text {
   font-size: 11px;
-  color: #999;
+  color: var(--text-secondary);
   margin-top: 4px;
 }
 

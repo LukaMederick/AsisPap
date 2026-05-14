@@ -1,53 +1,66 @@
-.logo {
-  padding: 20px;
-  text-align: center;
-  border-bottom: 1px solid var(--border-color);
-  margin-bottom: 16px;
-  background-color: var(--sidebar-background);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-
-  h2 {
-    margin: 0;
-    font-size: 18px;
-    color: var(--primary-color);
-    transition: color 0.3s ease;
-  }
-}
-
-.active {
-  background-color: var(--primary-light) !important;
-  color: var(--text-on-primary) !important;
-  transition: background-color 0.3s ease, color 0.3s ease;
-
-  .mat-icon {
-    color: var(--text-on-primary) !important;
-    transition: color 0.3s ease;
-  }
-}
-
-// Estilos adicionales para el sidebar
 :host {
+  display: block;
   background-color: var(--sidebar-background);
-  border-right: 1px solid var(--border-color);
   transition: background-color 0.3s ease, border-color 0.3s ease;
+  height: 100%;
 }
 
 mat-nav-list {
   background-color: transparent !important;
+  padding-top: 8px;
+  padding-bottom: 16px;
 }
+// ✅ Selectores más específicos para penetrar encapsulamiento de Material
+:host ::ng-deep {
 
-mat-list-item {
-  color: var(--text-primary) !important;
-  transition: color 0.3s ease;
-
-  &:hover {
-    background-color: var(--hover-color) !important;
-    transition: background-color 0.3s ease;
+  // Subheaders
+  .mat-subheader,
+  [mat-subheader] {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
   }
-}
 
-mat-subheader {
-  color: var(--text-secondary) !important;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  // Items de la lista — texto e iconos
+  .mat-mdc-list-item {
+    border-radius: 0 !important;
+    color: var(--text-primary) !important;
+    transition: color 0.3s ease, background-color 0.3s ease;
+
+    // Texto interno
+    .mdc-list-item__primary-text,
+    .mat-mdc-list-item-title,
+    span[matListItemTitle] {
+      color: var(--text-primary) !important;
+      transition: color 0.3s ease;
+    }
+
+    // Iconos
+    .mat-icon,
+    mat-icon {
+      color: var(--text-primary) !important;
+      transition: color 0.3s ease;
+    }
+
+    // Hover
+    &:hover {
+      background-color: var(--hover-color) !important;
+    }
+  }
+
+  // ✅ Item activo (routerLinkActive="active")
+  .mat-mdc-list-item.active {
+    background-color: var(--primary-light) !important;
+
+    .mdc-list-item__primary-text,
+    .mat-mdc-list-item-title,
+    span[matListItemTitle] {
+      color: var(--text-on-primary) !important;
+    }
+
+    .mat-icon,
+    mat-icon {
+      color: var(--text-on-primary) !important;
+    }
+  }
 }

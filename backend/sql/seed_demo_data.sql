@@ -55,7 +55,11 @@ INSERT INTO permissions (id, name, "moduleName") VALUES
   (2, 'Crear', 'General'),
   (3, 'Actualizar', 'General'),
   (4, 'Eliminar un registro en particular', 'General'),
-  (5, 'Reordenar', 'General');
+  (5, 'Reordenar', 'General'),
+  (20, 'Acceso módulo Dashboard', 'dashboard'),
+  (21, 'Acceso módulo Asistencia', 'attendance'),
+  (22, 'Acceso módulo Papeletas', 'permissions'),
+  (23, 'Acceso módulo Directorio', 'directory');
 
 INSERT INTO schedules (id, name, "startTime", "endTime", status) VALUES
   (1, 'Horario Regular', '08:01:00', '16:00:00', true),
@@ -84,8 +88,11 @@ INSERT INTO user_roles ("userId", "roleId") VALUES
 
 INSERT INTO role_permissions ("roleId", "permissionId") VALUES
   (1, 1), (1, 2), (1, 3), (1, 4), (1, 5),
-  (7, 1), (7, 2),
-  (8, 1), (8, 2), (8, 3);
+  (1, 20), (1, 21), (1, 22), (1, 23),
+  (5, 20), (5, 22),
+  (6, 20), (6, 22),
+  (7, 1), (7, 2), (7, 20), (7, 21),
+  (8, 1), (8, 2), (8, 3), (8, 20), (8, 23);
 
 INSERT INTO user_schedules ("userId", "scheduleId", "validFrom", "validTo") VALUES
   (1, 1, '2026-01-01', NULL),

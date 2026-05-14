@@ -1,0 +1,279 @@
+:host {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--background-color);
+}
+
+.login-page {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+/* Columna izquierda: 35% del ancho; el formulario queda centrado dentro */
+.login-panel {
+  flex: 0 0 35%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.login-panel__inner {
+  width: min(360px, 100%);
+  margin-inline: auto;
+  flex-shrink: 0;
+}
+
+.login-brand {
+  margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+  text-align: center;
+}
+
+.login-brand__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-dark, var(--accent-color)));
+  color: var(--text-on-primary, #fff);
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(37, 99, 235, 0.25));
+
+  mat-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.login-brand h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.login-brand__subtitle {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.field-block {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 0.35rem 0.125rem;
+}
+
+/* Campos más bajos y fila horizontal (icono + texto + ojito) */
+:host ::ng-deep .login-field {
+  width: 100%;
+
+  /* Borde suave del contorno */
+  .mdc-text-field--outlined .mdc-notched-outline__leading,
+  .mdc-text-field--outlined .mdc-notched-outline__notch,
+  .mdc-text-field--outlined .mdc-notched-outline__trailing {
+    border-color: var(--border-color);
+    border-width: 1px;
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    margin-top: 0.25rem;
+  }
+
+  .mat-mdc-text-field-wrapper {
+    align-items: stretch;
+  }
+
+  .mat-mdc-form-field-flex {
+    align-items: stretch;
+  }
+
+  .mat-mdc-form-field-infix {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .mat-mdc-form-field-icon-suffix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    padding: 0 2px 0 4px;
+  }
+
+  .field-row-icon {
+    margin-right: 6px;
+    color: var(--text-secondary);
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+    align-self: center;
+  }
+
+  input.mat-mdc-input-element {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 0.9375rem;
+    letter-spacing: 0.02em;
+    align-self: center;
+  }
+
+  .toggle-visibility {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+    margin: 0;
+    align-self: center;
+
+    .mat-mdc-button-touch-target {
+      width: 40px;
+      height: 40px;
+    }
+
+    mat-icon,
+    .mat-icon {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      color: var(--text-secondary);
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-error {
+  margin: 0.5rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--error-color, #ef4444);
+  text-align: center;
+}
+
+.login-submit {
+  margin-top: 0.5rem;
+  height: 48px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  mat-spinner {
+    display: inline-block;
+  }
+}
+
+/* ~65% imagen derecha */
+.login-hero {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  display: none;
+  overflow: hidden;
+  background: var(--surface-color, #e2e8f0);
+}
+
+@media (min-width: 900px) {
+  .login-hero {
+    display: block;
+  }
+}
+
+@media (max-width: 899px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-panel {
+    flex: 1 1 auto;
+    max-width: none;
+    width: 100%;
+    justify-content: center;
+    padding: 1.25rem 1rem;
+  }
+
+  .login-panel__inner {
+    max-width: 360px;
+  }
+}
+
+.login-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.login-hero__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    rgba(15, 23, 42, 0.12) 0%,
+    rgba(15, 23, 42, 0.02) 45%,
+    transparent 100%
+  );
+}
+
+:host-context([data-theme='dark']) .login-hero__overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.15) 50%,
+    transparent 100%
+  );
+}

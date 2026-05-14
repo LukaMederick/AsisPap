@@ -166,7 +166,7 @@ mat-chip.accent {
 }
 
 // Mejorar contraste en modo oscuro
-[data-theme="dark"] {
+:host-context([data-theme="dark"]) {
   .stat-card, .stat-subcard {
     box-shadow: var(--shadow);
   }
@@ -204,13 +204,13 @@ mat-chip.accent {
 
 .area-text {
   font-size: 11px;
-  color: #999;
+  color: var(--text-secondary);
   margin-top: 4px;
 }
 
 .time-text {
   font-size: 11px;
-  color: #999;
+  color: var(--text-secondary);
   margin-top: 4px;
 }
 
@@ -223,10 +223,10 @@ mat-chip.accent {
   font-size: 48px;
   width: 48px;
   height: 48px;
-  color: #ccc;
+  color: var(--text-disabled);
   margin-bottom: 16px;
 }
 
 .empty-state p {
-  color: #999;
+  color: var(--text-secondary);
 }

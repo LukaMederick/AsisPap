@@ -1,0 +1,19 @@
+<div class="summary-grid">
+  <div class="summary-card" *ngFor="let card of summaryCards" [ngClass]="card.colorClass">
+    <div class="card-content">
+      <div class="card-info">
+        <span class="card-title">{{ card.title }}</span>
+        <span class="card-value">{{ card.value }}</span>
+      </div>
+      <div class="card-icon-wrapper">
+        <mat-icon>{{ card.icon }}</mat-icon>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="trend-indicator" [ngClass]="{'trend-up': card.trendUp, 'trend-down': !card.trendUp}">
+        <mat-icon>{{ card.trendUp ? 'trending_up' : 'trending_down' }}</mat-icon>
+        {{ card.trendText }}
+      </span>
+    </div>
+  </div>
+</div>

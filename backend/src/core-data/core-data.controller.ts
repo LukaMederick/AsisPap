@@ -27,6 +27,12 @@ export class CoreDataController {
   getUsers() {
     return this.coreDataService.findAllUsers();
   }
+
+  /** Permisos por módulo según roles del usuario (login / barra lateral). */
+  @Get('users/access/:dni')
+  getUserAccessByDni(@Param('dni') dni: string) {
+    return this.coreDataService.getUserAccessByDni(dni);
+  }
   @Post('users')
   createUser(@Body() body: Record<string, unknown>) {
     return this.coreDataService.createUser(body);

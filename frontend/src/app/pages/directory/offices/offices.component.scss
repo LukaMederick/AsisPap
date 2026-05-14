@@ -44,7 +44,7 @@
 
 .status-row label {
   font-weight: 500;
-  color: rgba(0,0,0,0.6);
+  color: var(--text-secondary);
 }
 
 .form-actions {
@@ -64,6 +64,6 @@
 
 .code-text {
   font-size: 11px;
-  color: #999;
+  color: var(--text-secondary);
   margin-top: 4px;
 }

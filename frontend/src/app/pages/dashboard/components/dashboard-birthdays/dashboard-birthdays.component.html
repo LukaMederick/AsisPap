@@ -1,0 +1,29 @@
+<mat-card class="widget-card birthdays-widget">
+  <mat-card-header>
+    <div mat-card-avatar class="widget-icon primary-icon">
+      <mat-icon>cake</mat-icon>
+    </div>
+    <mat-card-title>Cumpleaños del Mes</mat-card-title>
+    <mat-card-subtitle>{{ currentMonthName }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="scrollable-content">
+    <div *ngIf="birthdays.length === 0" class="no-data">
+      <mat-icon>sentiment_satisfied_alt</mat-icon>
+      <p>No hay cumpleaños este mes</p>
+    </div>
+
+    <div class="birthday-list">
+      <div class="birthday-item" *ngFor="let person of birthdays" [class.is-today]="person.isToday">
+        <div class="avatar">
+          {{ person.initials }}
+        </div>
+        <div class="info">
+          <h4>{{ person.name }}</h4>
+          <p>{{ person.dateFormatted }}</p>
+        </div>
+        <div class="tag" *ngIf="person.isToday">HOY</div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

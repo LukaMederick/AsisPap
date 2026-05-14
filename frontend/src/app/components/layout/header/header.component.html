@@ -1,11 +1,29 @@
-<mat-toolbar color="primary">
+<!-- header.component.html -->
+
+<div class="header-theme-wrap" [class.dark-theme]="appliedTheme === 'dark'">
+<mat-toolbar color="primary" class="navbar">
+
+  <!-- LOGO / TITULO -->
+  <div class="logo">
+    <div class="logo-icon">
+      <mat-icon>dashboard</mat-icon>
+    </div>
+
+    <div class="logo-text">
+      <h2>Sistema de Gestión</h2>
+      <span>Panel Administrativo</span>
+    </div>
+  </div>
+
   <span class="spacer"></span>
-  <button mat-icon-button>
+
+  <!-- NOTIFICACIONES -->
+  <button mat-icon-button class="toolbar-btn">
     <mat-icon>notifications</mat-icon>
   </button>
 
-  <!-- Menú de temas -->
-  <button mat-icon-button [matMenuTriggerFor]="themeMenu">
+  <!-- MENÚ TEMAS -->
+  <button mat-icon-button class="toolbar-btn" [matMenuTriggerFor]="themeMenu">
     <mat-icon>{{ getThemeIcon() }}</mat-icon>
   </button>
 
@@ -14,18 +32,38 @@
       <mat-icon>wb_sunny</mat-icon>
       <span>Modo Claro</span>
     </button>
+
     <button mat-menu-item (click)="setTheme('dark')" [class.active]="currentTheme === 'dark'">
       <mat-icon>nightlight</mat-icon>
       <span>Modo Oscuro</span>
     </button>
+
     <button mat-menu-item (click)="setTheme('system')" [class.active]="currentTheme === 'system'">
       <mat-icon>settings_brightness</mat-icon>
       <span>Sistema</span>
     </button>
   </mat-menu>
 
-  <button mat-icon-button>
-    <mat-icon>account_circle</mat-icon>
-  </button>
-  <span>Admin</span>
+  <!-- PERFIL -->
+  <div class="user-profile">
+    <button mat-icon-button class="toolbar-btn" type="button" [matMenuTriggerFor]="profileMenu" aria-label="Menú de usuario">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+
+    <div class="user-text">
+      <span class="username">{{ auth.displayName() }}</span>
+      @if (auth.rolesLabel(); as roles) {
+        <span class="user-roles" [title]="roles">{{ roles }}</span>
+      }
+    </div>
+  </div>
+
+  <mat-menu #profileMenu="matMenu">
+    <button mat-menu-item type="button" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Salir</span>
+    </button>
+  </mat-menu>
+
 </mat-toolbar>
+</div>

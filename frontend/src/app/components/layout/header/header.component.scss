@@ -1,14 +1,143 @@
+/* header.component.scss */
+
+.header-theme-wrap {
+  display: block;
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  height: 64px;
+
+  background: var(--bg-card);
+  color: var(--text-primary);
+
+  border-bottom: 1px solid var(--border-color);
+
+  transition: all 0.3s ease;
+}
+
+/* ===== LOGO ===== */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-light)
+  );
+
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+
+  mat-icon {
+    color: white;
+    font-size: 22px;
+  }
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+
+  span {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+}
+
+/* ===== SPACER ===== */
+
 .spacer {
   flex: 1 1 auto;
 }
 
-// Estilos para el menú de temas
-mat-menu-item.active {
-  background-color: var(--primary-light);
-  color: var(--text-on-primary);
+/* ===== BOTONES ===== */
+
+.toolbar-btn {
+  margin-left: 6px;
+  transition: all 0.25s ease;
 
   mat-icon {
-    color: var(--text-on-primary);
+    color: var(--text-primary);
+    transition: all 0.25s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+
+    mat-icon {
+      transform: scale(1.1);
+      color: var(--primary-color);
+    }
+  }
+}
+
+/* ===== PERFIL ===== */
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+  gap: 2px;
+
+  .user-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 4px;
+    min-width: 0;
+    max-width: min(320px, 32vw);
+  }
+
+  .username {
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.15;
+  }
+
+  .user-roles {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+}
+
+/* ===== MENU TEMAS ===== */
+
+mat-menu-item.active {
+  background: var(--primary-light);
+  color: white;
+
+  mat-icon {
+    color: white;
   }
 }
 
@@ -17,11 +146,50 @@ mat-menu-item mat-icon {
   color: var(--text-secondary);
 }
 
-// Animación suave para el cambio de icono del tema
-mat-toolbar button mat-icon {
-  transition: transform 0.3s ease;
+/* ===== DARK MODE ===== */
+
+.dark-theme {
+
+  .navbar {
+    background: #111827;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .logo-text h2 {
+    color: #ffffff;
+  }
+
+  .logo-text span {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .toolbar-btn mat-icon {
+    color: #f3f4f6;
+  }
+
+  .user-text .username {
+    color: #ffffff !important;
+  }
+
+  .user-roles {
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
 }
 
-mat-toolbar button:hover mat-icon {
-  transform: scale(1.1);
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+  .logo-text span {
+    display: none;
+  }
+
+  .logo-text h2 {
+    font-size: 15px;
+  }
+
+  .user-text {
+    display: none;
+  }
+
 }

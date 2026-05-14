@@ -1,0 +1,84 @@
+<div class="login-page">
+  <div class="login-panel">
+    <div class="login-panel__inner">
+      <div class="login-brand">
+        <div class="login-brand__icon" aria-hidden="true">
+          <mat-icon>manage_accounts</mat-icon>
+        </div>
+        <h1>Bienvenido</h1>
+        <p class="login-brand__subtitle">Ingresa para continuar al panel administrativo</p>
+      </div>
+
+      <form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="field-block">
+          <label class="field-label" for="login-dni">DNI</label>
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="full-width login-field">
+            <mat-icon matPrefix class="field-row-icon">badge</mat-icon>
+            <input
+              matInput
+              id="login-dni"
+              formControlName="dni"
+              inputmode="numeric"
+              maxlength="8"
+              autocomplete="username"
+            />
+            @if (form.controls.dni.touched && form.controls.dni.hasError('required')) {
+              <mat-error>Ingresa tu DNI</mat-error>
+            }
+            @if (form.controls.dni.touched && form.controls.dni.hasError('pattern')) {
+              <mat-error>8 dígitos numéricos</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <div class="field-block">
+          <label class="field-label" for="login-password">Contraseña</label>
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="full-width login-field">
+            <mat-icon matPrefix class="field-row-icon">lock</mat-icon>
+            <input
+              matInput
+              id="login-password"
+              [type]="showPassword() ? 'text' : 'password'"
+              formControlName="password"
+              autocomplete="current-password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              class="toggle-visibility"
+              (click)="togglePassword()"
+              [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+            >
+              <mat-icon>{{ showPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            @if (form.controls.password.touched && form.controls.password.hasError('required')) {
+              <mat-error>Ingresa tu contraseña</mat-error>
+            }
+            @if (form.controls.password.touched && form.controls.password.hasError('minlength')) {
+              <mat-error>Mínimo 4 caracteres</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        @if (errorMessage) {
+          <p class="login-error" role="alert">{{ errorMessage }}</p>
+        }
+
+        <button mat-flat-button color="primary" class="login-submit full-width" type="submit" [disabled]="submitting">
+          @if (submitting) {
+            <mat-spinner diameter="22"></mat-spinner>
+            <span>Entrando…</span>
+          } @else {
+            <span>Entrar</span>
+          }
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="login-hero" aria-hidden="true">
+    <img [src]="heroImageSrc" alt="" class="login-hero__img" width="1200" height="1600" />
+    <div class="login-hero__overlay"></div>
+  </div>
+</div>
